@@ -10,7 +10,6 @@ xhr.onreadystatechange = function() {
 	if (xhr.readyState == 4 && xhr.status == 200) {
 		
 		dataDict = getData(xhr.responseText);
-		console.log(dataDict);
 		injectScores();
 	}
 };
@@ -50,17 +49,14 @@ function formatProfName(prof) {
 
 	var names = prof.split(/,| /);
 	prof = names[0] + ", " + names[1];
-	console.log(prof);
 	return prof;
 }
 
 //some professor names are backwards (first, last) on polyratings
 function reverseProfName(prof) {
 	var names = prof.split(/,| /);
-	console.log("before " + prof);
 	console.log(names);
 	prof = names[2] + ", " + names[0];
-	console.log("after " + prof);
 	return prof;
 }
 
@@ -100,7 +96,7 @@ function injectHeaderColumns() {
 }
 
 function scoreToColor(score) {
-	var factor = (score >= 3.8) ? 0.13 : (score <= 1.9) ? 0.05 : 0.1;
+	var factor = (score >= 3.8) ? 0.13 : (score <= 3.0) ? 0.06 : 0.1;
 
 	var H = score * factor;
 	var S = 0.9;
@@ -140,7 +136,8 @@ function injectScores() {
 
 	injectHeaderColumns();
 
-	var trs = $('div.content  table tbody tr');
+	var trs = $('div.select-course > table tbody tr');
+	console.log(trs);
 	var prNode;
 	var prValue;
 	var prof;
