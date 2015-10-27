@@ -95,7 +95,7 @@ function injectHeaderColumns() {
 }
 
 function scoreToColor(score) {
-	var factor = (score >= 3.8) ? 0.13 : (score <= 3.0) ? 0.06 : 0.1;
+	var factor = (score >= 3.8) ? 0.13 : (score < 3.0) ? 0.08 : 0.1;
 
 	var H = score * factor;
 	var S = 0.9;
