@@ -55,7 +55,6 @@ function formatProfName(prof) {
 //some professor names are backwards (first, last) on polyratings
 function reverseProfName(prof) {
 	var names = prof.split(/,| /);
-	console.log(names);
 	prof = names[2] + ", " + names[0];
 	return prof;
 }
@@ -137,7 +136,6 @@ function injectScores() {
 	injectHeaderColumns();
 
 	var trs = $('div.select-course > table tbody tr');
-	console.log(trs);
 	var prNode;
 	var prValue;
 	var prof;
