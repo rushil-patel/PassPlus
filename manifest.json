@@ -1,12 +1,16 @@
 {
 	"manifest_version": 2,
 	"name" : "Pass+",
-	"description" : "View PolyRatings score directly on Pass",
-	"version": "0.1",
+	"description" : "View PolyRating scores directly on PASS.",
+	"version": "1.0",
+	"short_name" : "Pass+",
 	"permissions" : [
 		"webRequest",
 		"*://*.polyratings.com/"
 		],
+	"icons": { "16": "icon.png",
+           "48": "icon.png",
+          "128": "icon.png" },
 	"content_scripts": [
 		{
 			"matches": ["http://pass.calpoly.edu/main.html"],
