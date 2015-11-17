@@ -59,13 +59,32 @@ function reverseProfName(prof) {
 	return prof;
 }
 
+function partialMatch(prof) {
+	var names = prof.split(/,| /);
+	var score;
+	var trim = names[2].length - 1;
+	while(trim > 0 && score === undefined) {
+		var partialName = names[0] +", "+ names[2].substring(0,trim);
+		console.log(partialName);
+		score = dataDict.scores[partialName];
+		trim--;
+	}
+	return partialName;
+
+}
+
 function getLink(prof) {
 	var id = dataDict.ids[prof];
 
 	if (id === undefined) {
-		prof = reverseProfName(prof);
-		id = dataDict.ids[prof];
+		var reverseName = reverseProfName(prof);
+		id = dataDict.ids[reverseName];
 	}
+	if (id === undefined) {
+		var partialName = partialMatch(prof);
+		id = dataDict.scores[partialName];
+	}
+
 	return "http://polyratings.com/eval.phtml?profid=" + id;
 }
 
@@ -74,8 +93,13 @@ function getScore(prof) {
 	var score = dataDict.scores[prof];
 
 	if (score === undefined) {
-		prof = reverseProfName(prof);
-		score = dataDict.scores[prof];
+		var reverseName = reverseProfName(prof);
+		score = dataDict.scores[reverseName];
+	}
+	console.log(score);
+	if (score === undefined) {
+		var partialName = partialMatch(prof);
+		score = dataDict.scores[partialName];
 	}
 	return score;
 }
