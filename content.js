@@ -65,7 +65,6 @@ function partialMatch(prof) {
 	var trim = names[2].length - 1;
 	while(trim > 0 && score === undefined) {
 		var partialName = names[0] +", "+ names[2].substring(0,trim);
-		console.log(partialName);
 		score = dataDict.scores[partialName];
 		trim--;
 	}
@@ -96,7 +95,6 @@ function getScore(prof) {
 		var reverseName = reverseProfName(prof);
 		score = dataDict.scores[reverseName];
 	}
-	console.log(score);
 	if (score === undefined) {
 		var partialName = partialMatch(prof);
 		score = dataDict.scores[partialName];
